@@ -1,4 +1,3 @@
-// components/Navigation.tsx
 'use client'
 
 import { useState } from 'react'
@@ -17,7 +16,6 @@ const Navigation = () => {
     { id: 'projects', label: 'Projects' },
   ]
 
-  // Next.js의 내장 라우팅 기능 활용
   const handleNavClick = (sectionId: string) => {
     if (pathname === '/') {
       router.push(`/#${sectionId}`, { scroll: true })

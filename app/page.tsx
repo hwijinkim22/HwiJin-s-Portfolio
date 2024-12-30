@@ -3,6 +3,7 @@
 import React from 'react';
 import { useState, useEffect, useRef, RefObject } from 'react';
 import { Project } from './types/project';
+import Link from 'next/link';
 
 interface SectionProps {
  id: string;
@@ -172,7 +173,7 @@ const Portfolio = () => {
          title="About Me" 
          sectionRef={sectionRefs.about}
        >
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
            <div className="space-y-4">
              <div className="flex items-center space-x-4">
                <img
@@ -182,11 +183,11 @@ const Portfolio = () => {
                />
                <div>
                  <h3 className="text-3xl font-black text-black">김휘진</h3>
-                 <p className="text-xl text-gray-800">Frontend Developer</p>
+                 <p className="text-xl font-semibold text-gray-800">Frontend Developer</p>
                </div>
              </div>
              <p className="text-black text-base font-medium">
-               안녕하세요. <span className='font-bold text-blue-600'>사용자를 최우선으로 생각하는 개발자</span> 김휘진입니다.<br/>
+               안녕하세요. <span className='font-bold text-xl text-blue-600'>사용자를 최우선으로 생각하는 개발자</span> 김휘진입니다.<br/>
                사용자가 없다면 개발자도 없다는 마인드로 임합니다.
              </p>
            </div>
@@ -290,7 +291,12 @@ const Portfolio = () => {
        >
          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
            {projectsData.map((project, index) => (
-             <div key={index} className="bg-gray-50 rounded-lg overflow-hidden">
+            <Link
+              href={`/projects/${project.id}`}
+              key={index}
+              className='hover:scale-105 transition-transform duration-300' 
+            >
+             <div className="bg-gray-50 rounded-lg overflow-hidden">
                <img
                  src={project.image}
                  alt={project.title}
@@ -300,6 +306,7 @@ const Portfolio = () => {
                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                  <h4 className='text-base text-blue-600'>{project.date}</h4>
                  <p className="text-gray-800 mb-4">{project.description}</p>
+
                  <div className="flex flex-wrap gap-2">
                    {project.technologies.map((tech) => (
                      <span
@@ -312,6 +319,7 @@ const Portfolio = () => {
                  </div>
                </div>
              </div>
+             </Link>
            ))}
          </div>
        </Section>
