@@ -10,5 +10,10 @@ export interface Project {
         features: string[];
         github?: string;
         demo?: string;
+        screenshots?: {
+            image: string;
+            title: string;
+            description: string;
+        }[];
     };
 };

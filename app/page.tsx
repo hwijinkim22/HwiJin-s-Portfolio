@@ -137,7 +137,7 @@ const Portfolio = () => {
    {
     id: 'voyagex',
      title: 'Voyage X',
-     date: '2024.08 ~ 2024.09',
+     date: '2024.7 ~ 2024.08',
      description: '미래 우주 여행에 대한 다양한 정보 및 여행 상품/굿즈 결제',
      technologies: ['React', 'TypeScript', 'Tailwind'],
      image: '/images/VoyageX.png',
@@ -261,7 +261,7 @@ const Portfolio = () => {
              </a>
              <ul className="mt-4 space-y-2 text-gray-800">
                <li>• 레포지토리 20개</li>
-               <li>• 100개 이상의 커밋</li>
+               <li>• 꾸준한 커밋</li>
              </ul>
            </div>
 
@@ -278,7 +278,7 @@ const Portfolio = () => {
              </a>
              <ul className="mt-4 space-y-2 text-gray-800">
                <li>• TIL 작성</li>
-               <li>• 90개 이상의 포스트 작성</li>
+               <li>• 100개 이상의 포스트 작성</li>
              </ul>
            </div>
          </div>
