@@ -76,7 +76,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     const options = {
-      threshold: 0.3,
+      threshold: 0.5,
       rootMargin: "-50% 0px",
     };
 
