@@ -134,9 +134,9 @@ const Portfolio = () => {
       { name: "JavaScript", level: 100 },
       { name: "React", level: 100 },
       { name: "TypeScript", level: 95 },
-      { name: "Next.js", level: 98 },
+      { name: "Next.js", level: 95 },
     ],
-    backend: [{ name: "Supabase", level: 89 }],
+    backend: [{ name: "Supabase", level: 95 }],
   };
 
   const projectsData: Project[] = [

@@ -1,13 +1,12 @@
 'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { usePortfolioStore } from '../store/usePortfolioStore'
 
 const Navigation = () => {
   const pathname = usePathname()
   const router = useRouter()
-  const [activeSection, setActiveSection] = useState('about')
+  const { activeSection, setActiveSection } = usePortfolioStore();
 
   const navigationItems = [
     { id: 'about', label: 'About Me' },
