@@ -177,6 +177,7 @@ const Portfolio = () => {
 
       <main className="pt-24 text-black">
         <Section id="about" title="About Me" sectionRef={sectionRefs.about}>
+          <div className="relative min-h-screen">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
@@ -193,7 +194,7 @@ const Portfolio = () => {
                 </div>
               </div>
               <p className="text-black text-base font-medium">
-                안녕하세요.{" "}
+                안녕하세요 {" "}
                 <span className="font-bold text-xl text-blue-600">
                   사용자를 최우선으로 생각하는 개발자
                 </span>{" "}
@@ -201,6 +202,10 @@ const Portfolio = () => {
                 <br />
                 사용자가 없다면 개발자도 없다는 마인드로 임합니다.
               </p>
+            </div>
+            </div>
+            <div className="absolute bottom-60 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+              <p className="text-blue-500 animate-bounce">Scroll Down ↓</p>
             </div>
           </div>
         </Section>
