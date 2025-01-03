@@ -41,6 +41,11 @@ const ProjectDetail = () => {
   const projectId = params.id as string;
   const project = projectsData[projectId];
 
+	const { ref, isVisible, firstLoading } = useIntersectionObserver({
+		threshold: 0.2,
+		rootMargin: "-50px",
+	});
+
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -135,12 +140,8 @@ const ProjectDetail = () => {
             <h2 className="text-3xl font-bold mb-8 border-b-2 border-blue-500 pb-2 inline-block">
               프로젝트 둘러보기
             </h2>
-            {project.details.screenshots.map((screenshot, idx) => {
-              const { ref, isVisible, firstLoading } = useIntersectionObserver({
-                threshold: 0.2,
-                rootMargin: "-50px",
-              });
 
+            {project.details.screenshots.map((screenshot, idx) => {
               return (
                 <div
                   ref={ref}

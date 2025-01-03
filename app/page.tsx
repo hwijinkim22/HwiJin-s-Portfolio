@@ -4,6 +4,7 @@ import React from "react";
 import { useState, useEffect, useRef, RefObject } from "react";
 import { Project } from "./types/project";
 import Link from "next/link";
+import Image from 'next/image'
 
 interface SectionProps {
   id: string;
@@ -181,9 +182,11 @@ const Portfolio = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
-                <img
+                <Image
                   src="/images/profile.jpeg"
                   alt="Profile"
+                  width={128}
+                  height={128}
                   className="w-32 h-32 rounded-full object-cover"
                 />
                 <div>
@@ -313,9 +316,11 @@ const Portfolio = () => {
                 className="hover:scale-105 transition-transform duration-300"
               >
                 <div className="bg-gray-50 rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={500}
+                    height={300}
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-6">
