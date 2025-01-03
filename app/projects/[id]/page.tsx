@@ -41,11 +41,6 @@ const ProjectDetail = () => {
   const projectId = params.id as string;
   const project = projectsData[projectId];
 
-	const { ref, isVisible, firstLoading } = useIntersectionObserver({
-		threshold: 0.2,
-		rootMargin: "-50px",
-	});
-
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -142,6 +137,10 @@ const ProjectDetail = () => {
             </h2>
 
             {project.details.screenshots.map((screenshot, idx) => {
+							const { ref, isVisible, firstLoading } = useIntersectionObserver({
+								threshold: 0.2,
+								rootMargin: "-50px",
+							});
               return (
                 <div
                   ref={ref}
