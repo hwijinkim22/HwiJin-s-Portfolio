@@ -43,9 +43,9 @@ const Section = ({ id, title, children, sectionRef }: SectionProps) => {
   });
 
   const setRefs = (element: HTMLElement | null) => {
-    (ref as any).current = element;
+    (ref as React.MutableRefObject<HTMLElement | null>).current = element;
     if (sectionRef) {
-      (sectionRef as any).current = element;
+      (ref as React.MutableRefObject<HTMLElement | null>).current = element;
     }
   };
 
