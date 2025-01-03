@@ -15,5 +15,11 @@ export interface Project {
             title: string;
             description: string;
         }[];
+        troubleshooting?: {
+            title: string;
+            problem: string;
+            solution: string;
+            result: string;
+        }[];
     };
 };
