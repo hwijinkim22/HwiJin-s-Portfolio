@@ -45,7 +45,7 @@ const Section = ({ id, title, children, sectionRef }: SectionProps) => {
   const setRefs = (element: HTMLElement | null) => {
     (ref as React.MutableRefObject<HTMLElement | null>).current = element;
     if (sectionRef) {
-      (ref as React.MutableRefObject<HTMLElement | null>).current = element;
+      (sectionRef as React.MutableRefObject<HTMLElement | null>).current = element;
     }
   };
 
@@ -101,7 +101,7 @@ const Portfolio = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [sectionRefs]);
 
   const handleNavClick = (sectionId: string) => {
     const section = sectionRefs[sectionId as keyof typeof sectionRefs]?.current;
@@ -157,7 +157,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="text-xl font-bold text-black">
-              Hwijin's Portfolio
+              Hwijin&apos;s Portfolio
             </div>
             <div className="flex space-x-8">
               {navigationItems.map(({ id, label }) => (

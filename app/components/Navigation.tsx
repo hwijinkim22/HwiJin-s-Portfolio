@@ -29,7 +29,7 @@ const Navigation = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="text-xl font-bold text-black">
-            Hwijin's Portfolio
+            Hwijin&apos;s Portfolio
           </Link>
           <div className="flex space-x-8">
             {navigationItems.map(({ id, label }) => (
