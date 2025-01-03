@@ -157,7 +157,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="text-xl font-bold text-black">
-              Hwijin&apos;s Portfolio
+              Hwijin Portfolio
             </div>
             <div className="flex space-x-8">
               {navigationItems.map(({ id, label }) => (
