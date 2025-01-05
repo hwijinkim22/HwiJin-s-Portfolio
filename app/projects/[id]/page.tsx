@@ -1,15 +1,23 @@
 "use client";
 import { useParams } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { projectsData } from "../data";
 import Link from "next/link";
 import { Github } from "lucide-react";
 import Image from "next/image";
 
-const useIntersectionObserver = (options = {}) => {
+const useIntersectionObserver = (options: { threshold?: number, rootMargin?: string } = {}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [firstLoading, setFirstLoading] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
+
+	// const memoOptions = useMemo(() => options, [options]);
+	const memoOptions = useMemo(() => {
+		return {
+			threshold:options.threshold || 0.2,
+			rootMargin: options.rootMargin || "-50px"
+		}
+	}, [options])
 
   useEffect(() => {
     setTimeout(() => {
@@ -18,20 +26,21 @@ const useIntersectionObserver = (options = {}) => {
   }, []);
 
   useEffect(() => {
+		const currentRef = ref.current; 
     const observer = new IntersectionObserver(([entry]) => {
       setIsVisible(entry.isIntersecting);
-    }, options);
+    }, memoOptions);
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
-  }, [options]);
+  }, [memoOptions]);
 
   return { ref, isVisible, firstLoading };
 };
