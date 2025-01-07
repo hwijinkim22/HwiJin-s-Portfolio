@@ -18,17 +18,19 @@ const useIntersectionObserver = (options = {}) => {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const currentRef = ref.current;
+
     const observer = new IntersectionObserver(([entry]) => {
       setIsVisible(entry.isIntersecting);
     }, options);
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [options]);
@@ -37,22 +39,23 @@ const useIntersectionObserver = (options = {}) => {
 };
 
 const Section = ({ id, title, children, sectionRef }: SectionProps) => {
-  const { ref, isVisible } = useIntersectionObserver({
+  const { isVisible } = useIntersectionObserver({
     threshold: 0.3,
     rootMargin: "-100px",
+    targetRef: sectionRef
   });
 
-  const setRefs = (element: HTMLElement | null) => {
-    (ref as React.MutableRefObject<HTMLElement | null>).current = element;
-    if (sectionRef) {
-      (sectionRef as React.MutableRefObject<HTMLElement | null>).current = element;
-    }
-  };
+  // const setRefs = (element: HTMLElement | null) => {
+  //   intersectionRef.current = element;
+  //   if (sectionRef) {
+  //     sectionRef.current = element;
+  //   }
+  // };
 
   return (
     <section
       id={id}
-      ref={setRefs}
+      ref={sectionRef}
       className={`min-h-screen p-8 transition-all duration-1000 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
