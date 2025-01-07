@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState, useEffect, useRef, RefObject } from "react";
+import { useState, useEffect, useRef, RefObject, MutableRefObject } from "react";
 import { Project } from "./types/project";
 import Link from "next/link";
 import Image from 'next/image'
@@ -13,17 +13,22 @@ interface SectionProps {
   sectionRef: RefObject<HTMLElement>;
 }
 
-const useIntersectionObserver = (options = {}) => {
+const useIntersectionObserver = ({ threshold = 0.3, rootMargin = "-100px", targetRef }: {
+  threshold?: number;
+  rootMargin?: string;
+  targetRef: RefObject<HTMLElement>;
+}) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const currentRef = ref.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold, rootMargin }
+    );
 
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsVisible(entry.isIntersecting);
-    }, options);
-
+    const currentRef = targetRef.current;
     if (currentRef) {
       observer.observe(currentRef);
     }
@@ -33,9 +38,9 @@ const useIntersectionObserver = (options = {}) => {
         observer.unobserve(currentRef);
       }
     };
-  }, [options]);
+  }, [threshold, rootMargin, targetRef]);
 
-  return { ref, isVisible };
+  return { isVisible };
 };
 
 const Section = ({ id, title, children, sectionRef }: SectionProps) => {
@@ -44,13 +49,6 @@ const Section = ({ id, title, children, sectionRef }: SectionProps) => {
     rootMargin: "-100px",
     targetRef: sectionRef
   });
-
-  // const setRefs = (element: HTMLElement | null) => {
-  //   intersectionRef.current = element;
-  //   if (sectionRef) {
-  //     sectionRef.current = element;
-  //   }
-  // };
 
   return (
     <section
@@ -71,12 +69,12 @@ const Section = ({ id, title, children, sectionRef }: SectionProps) => {
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState("about");
 
-  const sectionRefs = {
+  const sectionRefs = React.useMemo(() => ({
     about: useRef<HTMLElement>(null),
     skills: useRef<HTMLElement>(null),
     archiving: useRef<HTMLElement>(null),
     projects: useRef<HTMLElement>(null),
-  };
+  }), []);
 
   useEffect(() => {
     const options = {
@@ -96,7 +94,7 @@ const Portfolio = () => {
     };
 
     const observer = new IntersectionObserver(handleIntersect, options);
-
+    
     Object.values(sectionRefs).forEach((ref) => {
       if (ref.current) {
         observer.observe(ref.current);
