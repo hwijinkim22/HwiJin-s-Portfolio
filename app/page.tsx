@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState, useEffect, useRef, RefObject, MutableRefObject } from "react";
+import { useState, useEffect, useRef, RefObject } from "react";
 import { Project } from "./types/project";
 import Link from "next/link";
 import Image from 'next/image'
@@ -69,11 +69,16 @@ const Section = ({ id, title, children, sectionRef }: SectionProps) => {
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState("about");
 
+  const aboutRef = useRef<HTMLElement>(null);
+  const skillRef = useRef<HTMLElement>(null);
+  const archivingRef = useRef<HTMLElement>(null);
+  const projectsRef = useRef<HTMLElement>(null);
+
   const sectionRefs = React.useMemo(() => ({
-    about: useRef<HTMLElement>(null),
-    skills: useRef<HTMLElement>(null),
-    archiving: useRef<HTMLElement>(null),
-    projects: useRef<HTMLElement>(null),
+    about: aboutRef,
+    skills: skillRef,
+    archiving: archivingRef,
+    projects: projectsRef,
   }), []);
 
   useEffect(() => {
