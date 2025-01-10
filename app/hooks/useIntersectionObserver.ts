@@ -10,30 +10,34 @@ export const useIntersectionObserver = (options: IntersectionObserverOptions = {
   const [firstLoading, setFirstLoading] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
 
+  const threshold = options.threshold ?? 0.2;
+  const rootMargin = options.rootMargin ?? "-50px";
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFirstLoading(false);
+    }, 200);
+  }, []);
+
   useEffect(() => {
     const currentRef = ref.current;
     const observer = new IntersectionObserver(([entry]) => {
       setIsVisible(entry.isIntersecting);
     }, {
-      threshold: options.threshold || 0.2,
-      rootMargin: options.rootMargin || "-50px"
+      threshold,
+      rootMargin
     });
 
     if (currentRef) {
       observer.observe(currentRef);
     }
 
-    // 초기 로딩 상태 처리
-    setTimeout(() => {
-      setFirstLoading(false);
-    }, 200);
-
     return () => {
       if (currentRef) {
         observer.unobserve(currentRef);
       }
     };
-  }, [options.threshold, options.rootMargin]);
+  }, [threshold, rootMargin]);
 
   return { ref, isVisible, firstLoading };
 };
