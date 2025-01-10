@@ -55,7 +55,6 @@ const ProjectDetail = () => {
   const projectId = params.id as string;
   const project = projectsData[projectId];
 
-  // 각 스크린샷마다 Intersection Observer refs 생성
   const screenshotsRefs = useMemo(() => {
     if (!project?.details?.screenshots) return [];
 
@@ -78,7 +77,6 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="max-w-4xl mx-auto">
-        {/* 뒤로가기 링크 */}
         <Link
           href={"/"}
           className="text-blue-600 hover:underline mb-8 inline-block"
@@ -86,7 +84,6 @@ const ProjectDetail = () => {
           ← 메인으로 돌아가기
         </Link>
 
-        {/* 프로젝트 메인 정보 */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <Image
             src={project.image}
@@ -100,7 +97,6 @@ const ProjectDetail = () => {
             <h1 className="text-3xl font-bold mb-2">{project.title}</h1>
             <p className="text-blue-600 mb-4">{project.date}</p>
 
-            {/* 기술 스택 태그 */}
             <div className="flex flex-wrap gap-2 mb-6">
               {project.technologies.map((tech) => (
                 <span
@@ -112,7 +108,6 @@ const ProjectDetail = () => {
               ))}
             </div>
 
-            {/* 프로젝트 상세 정보 */}
             {project.details && (
               <>
                 <div className="mb-8">
@@ -133,7 +128,6 @@ const ProjectDetail = () => {
                   </ul>
                 </div>
 
-                {/* 링크 버튼 */}
                 <div className="flex gap-4">
                   {project.details.github && (
                     <Link
@@ -162,7 +156,6 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        {/* 스크린샷 섹션 */}
         {project.details?.screenshots && (
           <div className="mt-16">
             <h2 className="text-3xl font-bold mb-8 border-b-2 border-blue-500 pb-2 inline-block">
@@ -232,7 +225,6 @@ const ProjectDetail = () => {
           </div>
         )}
 
-        {/* 개선 경험 섹션 */}
         {project.details?.screenshots && (
           <div className="mt-16">
             <h2 className="font-bold text-3xl border-blue-500 border-b-2 mb-8 inline-block">
